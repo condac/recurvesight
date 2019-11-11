@@ -29,5 +29,5 @@ C_MOUNT1_W = 28;
 S_CASTER = 4;
 S_CAMBER = 2;
 
-S_BAR_W = 20;
+S_BAR_W = 25;
 S_BAR_H = 5;
