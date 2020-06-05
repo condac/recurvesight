@@ -22,7 +22,7 @@ b_w = w + 1;
 b_h = 10;
 
 %stone_stick();
-%stone_block();
+stone_block();
 
 
 module stone_stick() {
@@ -63,7 +63,7 @@ module stone_block() {
         }
         
         // sight rod
-        translate([-b_w,b_l-5,wall+r_h+b_h/2]) rotate([0,90,0]) %cylinder(d=C_M4_DIAMETER, h = b_w*2);
+        translate([-b_w,b_l-5,wall+r_h+b_h/2]) rotate([0,90,0]) cylinder(d=C_M4_DIAMETER, h = b_w*2);
         
         // nut & screw
         hh = 6;
