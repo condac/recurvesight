@@ -9,27 +9,23 @@ r_h = 4;
 wall = 4;
 w = r_w+wall*2;
 h = r_h+wall;
-l = 100;
+l = 120;
 
 // mounting to sight part
 c_h = 10;
 c_w = 40;
 
+// Block length
 
-//prim_base_p();
-stick();
-module prim_base_p() {
-    difference() {
-        union() {
-            translate([0,0,0]) rotate([0,0,90]) rotate([0,90,0]) stick();
-            translate([-20,-20,0]) roundedcube(c_w,20,c_h,3);
-        }
-        screws();
-        translate([-20,-28,0]) cube([c_w,20,c_h]);
-    }
-}
+b_l = 30;
+b_w = w + 0.5;
+b_h = 10;
 
-module stick() {
+stone_stick();
+stone_block();
+
+
+module stone_stick() {
     difference() {
         union() {
             translate([-w/2,0,0]) cube([w,l,h]);
@@ -45,7 +41,32 @@ module screws() {
 
     translate([0,20+C_MOUNT1_W/2,wall]) rotate([0,0,0]) M3_flat_screw(l=30,l2=0);
     translate([0,20-C_MOUNT1_W/2,wall]) rotate([0,0,0]) M3_flat_screw(l=30,l2=0);
+    translate([0,20+C_MOUNT1_W/2+C_MOUNT1_W,wall]) rotate([0,0,0]) M3_flat_screw(l=30,l2=0);
     
-    translate([0,30+C_MOUNT1_W/2,wall]) rotate([0,0,0]) M3_flat_screw(l=30,l2=0);
-    translate([0,30-C_MOUNT1_W/2,wall]) rotate([0,0,0]) M3_flat_screw(l=30,l2=0);
+    translate([0,l/2+C_MOUNT1_W/2,wall]) rotate([0,0,0]) M3_flat_screw(l=30,l2=0);
+    translate([0,l/2-C_MOUNT1_W/2,wall]) rotate([0,0,0]) M3_flat_screw(l=30,l2=0);
+    translate([0,l/2-C_MOUNT1_W/2-C_MOUNT1_W,wall]) rotate([0,0,0]) M3_flat_screw(l=30,l2=0);
+}
+
+module stone_block() {
+    
+    difference() {
+        union() {
+            translate([-b_w/2,0,wall+0.5+r_h-0.5]) cube([b_w,b_l,b_h]);
+            translate([0,0,wall+0.5]) beam30(w=r_w-1, l=b_l, h=r_h-0.5);
+            
+            // railwalls
+            rw = 5;
+            translate([-b_w/2-rw,0,wall/2]) cube([rw,b_l,b_h+r_h+wall/2]);
+            translate([+b_w/2,0,wall/2]) cube([rw+3,b_l,b_h+r_h+wall/2]);
+        }
+        
+        translate([-b_w,b_l/4,wall+r_h+b_h/2]) rotate([0,90,0]) cylinder(d=C_M4_DIAMETER, h = b_w*2);
+        
+        // nut & screw
+        hh = 6;
+        translate([b_w/2-3,b_l/2,hh]) rotate([0,90,0]) cylinder(d=C_M3_NUT, h = 3+3, $fn=6);
+        translate([b_w/2,b_l/2,hh]) rotate([0,90,0]) cylinder(d=C_M3_DIAMETER_THREAD, h = 20);
+    }
+    
 }

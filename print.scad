@@ -19,10 +19,10 @@ module bow_mount() {
 
 
 module mount_beam_alt() { 
-    mount_beam_alt_p();
+    rotate([0,0,90]) mount_beam_alt_p();
 }
 module mount_beam() { 
-    mount_beam_p();
+    rotate([0,0,90]) mount_beam_p();
 }
 
 
@@ -38,4 +38,14 @@ module base() {
 }
 module all() {
     cube(1);
+}
+module stoneage() {
+    cube(1);
+}
+module stone_block_p() {
+    rotate([180,0,0]) stone_block();
+}
+
+module stone_stick_p() {
+    rotate([0,0,90]) stone_stick();
 }
