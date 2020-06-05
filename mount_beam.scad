@@ -47,9 +47,8 @@ module mount_beam_alt_p() {
         }
         screws();
         translate([-20,l+8,0]) cube([c_w,20,c_h]);
-        translate([C_SIGHT_MOUNT_S/2,10,7]) cylinder(d=C_SIGHT_SCREW_D+0.1, h = 10);
-        translate([-C_SIGHT_MOUNT_S/2,10,7]) cylinder(d=C_SIGHT_SCREW_D+0.1, h = 10);M4_button_screw();
-
+        translate([C_SIGHT_MOUNT_S/2,10,-1]) cylinder(d=C_SIGHT_SCREW_D+0.1, h = 10);
+        translate([-C_SIGHT_MOUNT_S/2,10,-1]) cylinder(d=C_SIGHT_SCREW_D+0.1, h = 10);
         
     }
 
