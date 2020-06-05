@@ -23,6 +23,7 @@ C_8MM_TIGHT = 8.2; // Tight fitting for indrive etc
 C_8MM_FIT = 8.5; // Perfect fit for it to be removable but not by much force, used for left wheel mount
 
 C_SIGHT_MOUNT_S = 33.3375;
+C_SIGHT_SCREW_D = 4.7;
 
 C_MOUNT1_W = 28;
 // ############# Settings ################

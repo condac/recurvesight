@@ -5,7 +5,7 @@
 all: stl primitive base
 
 
-base: bow_mount mount_beam
+base: bow_mount mount_beam mount_beam_alt
 
 primitive: prim_base
 

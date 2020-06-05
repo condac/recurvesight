@@ -18,6 +18,9 @@ module bow_mount() {
 }
 
 
+module mount_beam_alt() { 
+    mount_beam_alt_p();
+}
 module mount_beam() { 
     mount_beam_p();
 }
