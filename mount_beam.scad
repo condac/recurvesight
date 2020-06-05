@@ -17,7 +17,7 @@ module mount_beam_p() {
     difference() {
         union() {
             beam45(w=S_BAR_W, l=l, h=5);
-            translate([-20,l,0]) roundedcube(c_w,20,c_h,3);
+            translate([-20,l-0.2,0]) roundedcube(c_w,20,c_h,3);
         }
         screws();
         translate([-20,l+8,0]) cube([c_w,20,c_h]);
@@ -42,7 +42,7 @@ module mount_beam_alt_p() {
     difference() {
         union() {
             beam45(w=S_BAR_W, l=l, h=7);
-            translate([-20,l,0]) roundedcube(c_w,20,c_h,3);
+            translate([-20,l-0.2,0]) roundedcube(c_w,20,c_h,3);
             translate([-xx/2,0,0]) cube([xx,20,7]);
         }
         screws();
