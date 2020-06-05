@@ -40,7 +40,12 @@ module all() {
     cube(1);
 }
 module stoneage() {
-    cube(1);
+    mount_beam_alt_p();
+    translate([-50,160,5]) rotate([-90,-90,0]) union() {
+        translate([25,0,4])stone_stick();
+        translate([25,0,4])stone_block();
+        translate([0,0,-1])stone_mount_offset();
+    }
 }
 module stone_block_p() {
     rotate([180,0,0]) stone_block();
@@ -48,4 +53,8 @@ module stone_block_p() {
 
 module stone_stick_p() {
     rotate([0,0,90]) stone_stick();
+}
+//stone_mount_offset_p();
+module stone_mount_offset_p() {
+    stone_mount_offset();
 }

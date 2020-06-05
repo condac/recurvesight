@@ -9,7 +9,7 @@ base: bow_mount mount_beam mount_beam_alt
 
 primitive: prim_base
 
-stoneage: stone_block_p stone_stick_p
+stoneage: stone_block_p stone_stick_p stone_mount_offset_p
 
 %:
 	openscad -m make -o stl/$@.stl -D "$@();" print.scad

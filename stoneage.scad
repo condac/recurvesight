@@ -18,11 +18,11 @@ c_w = 40;
 // Block length
 
 b_l = 30;
-b_w = w + 0.5;
+b_w = w + 1;
 b_h = 10;
 
-stone_stick();
-stone_block();
+%stone_stick();
+%stone_block();
 
 
 module stone_stick() {
@@ -32,6 +32,7 @@ module stone_stick() {
             
         }
         translate([0,0,wall]) beam30(w=r_w, l=l, h=r_h);
+        translate([-6/2,0,wall]) cube([6,l,h]);
         screws();
     }
 }
@@ -39,13 +40,13 @@ module stone_stick() {
 %screws();
 module screws() {
 
-    translate([0,20+C_MOUNT1_W/2,wall]) rotate([0,0,0]) M3_flat_screw(l=30,l2=0);
-    translate([0,20-C_MOUNT1_W/2,wall]) rotate([0,0,0]) M3_flat_screw(l=30,l2=0);
-    translate([0,20+C_MOUNT1_W/2+C_MOUNT1_W,wall]) rotate([0,0,0]) M3_flat_screw(l=30,l2=0);
+    translate([0,20+C_MOUNT1_W/2,wall]) rotate([0,0,0]) M3_flat_screw(l=30,l2=20);
+    translate([0,20-C_MOUNT1_W/2,wall]) rotate([0,0,0]) M3_flat_screw(l=30,l2=20);
+    translate([0,20+C_MOUNT1_W/2+C_MOUNT1_W,wall]) rotate([0,0,0]) M3_flat_screw(l=30,l2=20);
     
-    translate([0,l/2+C_MOUNT1_W/2,wall]) rotate([0,0,0]) M3_flat_screw(l=30,l2=0);
-    translate([0,l/2-C_MOUNT1_W/2,wall]) rotate([0,0,0]) M3_flat_screw(l=30,l2=0);
-    translate([0,l/2-C_MOUNT1_W/2-C_MOUNT1_W,wall]) rotate([0,0,0]) M3_flat_screw(l=30,l2=0);
+    translate([0,l/2+C_MOUNT1_W/2,wall]) rotate([0,0,0]) M3_flat_screw(l=30,l2=20);
+    translate([0,l/2-C_MOUNT1_W/2,wall]) rotate([0,0,0]) M3_flat_screw(l=30,l2=20);
+    translate([0,l/2-C_MOUNT1_W/2-C_MOUNT1_W,wall]) rotate([0,0,0]) M3_flat_screw(l=30,l2=20);
 }
 
 module stone_block() {
@@ -61,12 +62,28 @@ module stone_block() {
             translate([+b_w/2,0,wall/2]) cube([rw+3,b_l,b_h+r_h+wall/2]);
         }
         
-        translate([-b_w,b_l/4,wall+r_h+b_h/2]) rotate([0,90,0]) cylinder(d=C_M4_DIAMETER, h = b_w*2);
+        // sight rod
+        translate([-b_w,b_l-5,wall+r_h+b_h/2]) rotate([0,90,0]) %cylinder(d=C_M4_DIAMETER, h = b_w*2);
         
         // nut & screw
         hh = 6;
-        translate([b_w/2-3,b_l/2,hh]) rotate([0,90,0]) cylinder(d=C_M3_NUT, h = 3+3, $fn=6);
-        translate([b_w/2,b_l/2,hh]) rotate([0,90,0]) cylinder(d=C_M3_DIAMETER_THREAD, h = 20);
+        translate([b_w/2-3,5,hh]) rotate([0,90,0]) cylinder(d=C_M3_NUT, h = 3+3, $fn=6);
+        translate([b_w/2,5,hh]) rotate([0,90,0]) cylinder(d=C_M3_DIAMETER_THREAD, h = 20);
     }
     
+}
+translate([0,0,-4]) stone_mount_offset();
+module stone_mount_offset() {
+    off = 25;
+    xx = off + 10;
+    yy = C_MOUNT1_W + 10;
+    zz = 4;
+    difference() {
+        translate([-5,0,0]) cube([xx,yy,zz]);
+        translate([0,20+C_MOUNT1_W/2,zz]) rotate([0,0,0]) M3_flat_screw(l=30,l2=20);
+        translate([0,20-C_MOUNT1_W/2,zz]) rotate([0,0,0]) M3_flat_screw(l=30,l2=20);
+        
+        translate([xx-10,20+C_MOUNT1_W/2,-zz]) rotate([0,0,0]) cylinder(d=C_M3_DIAMETER_THREAD, h = 20);
+        translate([xx-10,20-C_MOUNT1_W/2,-zz]) rotate([0,0,0]) cylinder(d=C_M3_DIAMETER_THREAD, h = 20);
+    }
 }
