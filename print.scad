@@ -4,6 +4,8 @@ use <bowmount.scad>
 use <mount_beam.scad>
 use <primitive.scad>
 use <stoneage.scad>
+use <copperage.scad>
+use <pinmount.scad>
 
 param1=0;   // must be initalised
 len=param1; // param1 passed via -D on cmd-line
@@ -50,11 +52,28 @@ module stoneage() {
 module stone_block_p() {
     rotate([180,0,0]) stone_block();
 }
-
+//stone_stick_p();
 module stone_stick_p() {
     rotate([0,0,90]) stone_stick();
 }
 //stone_mount_offset_p();
 module stone_mount_offset_p() {
     stone_mount_offset();
+}
+
+//copper_pinmount_p();
+module copper_pinmount_p() {
+    pinmount_M4();
+}
+//copper_block_p();
+module copper_block_p() {
+    rotate([0,0,0]) copper_block();
+}
+//copper_stick_p();
+module copper_stick_p() {
+    rotate([0,-90,0]) copper_stick();
+}
+//copper_hinge_p();
+module copper_hinge_p() {
+    rotate([0,0,0]) copper_hinge();
 }

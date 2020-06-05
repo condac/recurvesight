@@ -60,6 +60,18 @@ module beam30(w = 10, l = 10, h = 8) {
     }
 }
 
+halfbeam30(w = 100, l = 10, h = 8);
+module halfbeam30(w = 10, l = 10, h = 8) {
+    difference() {
+        union() {
+            translate([-w/2,0,0]) cube([w,l,h]);
+        }
+        translate([0,-l*0.1,0])rotate([0,+30,0]) cube([w+l+h,w+l+h+l*0.1,w+l+h]);
+        //translate([-w/2,0,0]) rotate([0,-90+30,0])translate([0-w,-1,0]) cube([w+h*2,l+2,h*2]);
+    }
+}
+
+
 
 module cylinder_outer(height,radius,fn){
    fudge = 1/cos(180/fn);
