@@ -26,7 +26,7 @@ sl = 120;
 sh = 10;
 sx = 14;
 // stick walls around adjust screw
-swall = 2;
+swall = 3;
 
     // grove
     gx = 4;
@@ -70,7 +70,7 @@ module screws() {
     translate([0-sh+gx, 0,C_MOUNT1_W +C_MOUNT1_W/2]) rotate([0,90,0]) M3_flat_screw(l=30,l2=20);
 
     // main adjust screw
-    translate([0,0,-sl]) cylinder(d=C_M4_DIAMETER, h=sl*2);
+    translate([0,0,-sl]) cylinder(d=C_M4_DIAMETER+0.1, h=sl*2);
 }
 %block_screws();
 module block_screws() {
@@ -94,11 +94,11 @@ module copper_block() {
             
             translate([-sh+5,-17,0]) rotate([0,0,-45]) rotate([0,-90,0]) cylinder(d=8, h=8);
             
-            translate([-sh+2,-b_y/2,-b_h/2]) cube([b_x,b_y,b_h]);
+            translate([-sh+0,-b_y/2,-b_h/2]) cube([b_x+2,b_y,b_h]);
             
         }
         // stick clearing
-        translate([-sh,-sw/2-1,-sl/2]) cube([sh+1,sw+2,sl]);
+        translate([-sh,-sw/2-0.5,-sl/2]) cube([sh+1,sw+1,sl]);
         
         translate([0,0,-b_h]) cylinder(d=10, h=b_h*2);
         
@@ -112,9 +112,11 @@ module copper_block() {
 
 
 module bearingholderss() {
-    translate([-sh,-sx/2,0]) rotate([0,0,45]) rotate([-90,0,0]) bearingholder();
-    mirror([0,1,0]) translate([-sh,-sx/2,0]) rotate([0,0,45]) rotate([-90,0,0]) bearingholder();
+    translate([-sh,-sx/2,0]) rotate([0,0,0]) rotate([-90,0,0]) bearingholder();
+    mirror([0,1,0]) translate([-sh,-sx/2,0]) rotate([0,0,0]) rotate([-90,0,0]) bearingholder();
 }
+
+
 module bearingholder() {
     xx = 8;
     yy = 8;
