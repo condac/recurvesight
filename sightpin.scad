@@ -29,6 +29,9 @@ phw = 0.4;
 // Resulution
 rs = 64;
 
+litetkorn = 0; //[0:tjock, 1:litet]
+korn_z = 2.0;
+
 sightpin();
 module sightpin() {
     difference() {
@@ -38,7 +41,13 @@ module sightpin() {
             mountpipe();
             pinholder();
         }
+        if (litetkorn == 1) {
+            
+            translate([0,0,sh/2+korn_z/2]) pipe(id = ph, w = srw, h = sh);
+            translate([0,0,sh/2-korn_z/2-0.5]) pipe(id = ph, w = srw, h = 0.5);
         
+            translate([0,0,sh/2+korn_z/2]) cylinder(d1 = ph, d2=ld,  h = sh/2-korn_z/2);
+        }
     }
 }
 
