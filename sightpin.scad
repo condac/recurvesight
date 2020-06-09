@@ -3,13 +3,13 @@ include <tunable_constants.scad>;
 use <common_parts.scad>
 
 // Pin hole inner diameter
-ph = 2;
+ph = 2.01;
 
 // Small ring width
 srw = 0.8;
 
 // Large ring inner diameter
-ld = 10;
+ld = 10.01;
 
 // Large ring width
 lrw = 1.2;
@@ -43,10 +43,7 @@ module sightpin() {
         }
         if (litetkorn == 1) {
             
-            translate([0,0,sh/2+korn_z/2]) pipe(id = ph, w = srw, h = sh);
-            translate([0,0,sh/2-korn_z/2-0.5]) pipe(id = ph, w = srw, h = 0.5);
-        
-            translate([0,0,sh/2+korn_z/2]) cylinder(d1 = ph, d2=ld,  h = sh/2-korn_z/2);
+            translate([0,0,sh-korn_z]) cylinder(d1=ph+srw*2, d2=ld, h=korn_z, $fn=rs);
         }
     }
 }
